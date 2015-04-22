@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="CouponSYS:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/CouponSYS_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="CouponSYS/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="CouponSYS" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

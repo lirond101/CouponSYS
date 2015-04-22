@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - DB_Coupons@localhost" uuid="f597cd9c-35a6-4272-81e5-728afba256d4">
+    <database-info product="MySQL" version="5.6.24-log" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <schema name="" catalog="db_coupons"/>
+    <table name="coupon" schema="" catalog="db_coupons" type="TABLE">
+      <column name="idcoupon" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="name" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="idcoupon"/>
+      <exported-key name="coupon_code" table="deal" schema="" catalog="db_coupons" columns="id_coupon"/>
+    </table>
+    <table name="customer_user" schema="" catalog="db_coupons" type="TABLE">
+      <column name="email" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="date_of_birth" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="coupon_preference" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="username" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="email"/>
+      <foreign-key name="username" columns="username" ref-table="user" ref-schema="" ref-catalog="db_coupons" ref-columns="username" update-rule="0" delete-rule="0" deferrability="2"/>
+      <index name="username_idx" unique="false" columns="username"/>
+    </table>
+    <table name="deal" schema="" catalog="db_coupons" type="TABLE">
+      <column name="purchase_Code" sqlType="VARCHAR" precision="64" scale="0" nullable="false" jdbcType="12"/>
+      <column name="store_name" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="order_Date" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="id_coupon" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="status" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="user_rank" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="serial_key" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="expiration_date" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="purchase_Code"/>
+      <foreign-key name="coupon_code" columns="id_coupon" ref-table="coupon" ref-schema="" ref-catalog="db_coupons" ref-columns="idcoupon" update-rule="0" delete-rule="3" deferrability="2"/>
+      <foreign-key name="store_name" columns="store_name" ref-table="strore" ref-schema="" ref-catalog="db_coupons" ref-columns="name" update-rule="0" delete-rule="3" deferrability="2"/>
+      <index name="coupon_code_idx" unique="false" columns="id_coupon"/>
+      <index name="store_name_idx" unique="false" columns="store_name"/>
+    </table>
+    <table name="strore" schema="" catalog="db_coupons" type="TABLE">
+      <column name="name" sqlType="VARCHAR" precision="64" scale="0" nullable="false" jdbcType="12"/>
+      <column name="description" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="address" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="category" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="store_rank" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="phone" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="name"/>
+      <exported-key name="store_name" table="deal" schema="" catalog="db_coupons" columns="store_name"/>
+    </table>
+    <table name="user" schema="" catalog="db_coupons" type="TABLE">
+      <column name="username" sqlType="VARCHAR" precision="64" scale="0" nullable="false" jdbcType="12"/>
+      <column name="first_name" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="last_name" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="password" sqlType="VARCHAR" precision="32" scale="0" nullable="true" jdbcType="12"/>
+      <column name="phone" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="username"/>
+      <exported-key name="username" table="customer_user" schema="" catalog="db_coupons" columns="username"/>
+    </table>
+  </data-source>
+</component>
